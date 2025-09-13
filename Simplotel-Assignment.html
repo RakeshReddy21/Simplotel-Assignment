@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Simplotel Assignment</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --coral: #ff6b6b;
+      --btn: #ff6b6b;
+      --ink: #333;
+      --muted: #666;
+      --radius: 4px;
+      --grad: linear-gradient(90deg, #ffeaa7 0%, #fab1a1 50%, #f6a6f4 100%);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Montserrat", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--ink);
+      background: var(--grad) fixed;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+      height: auto;
+    }
+
+    .container {
+      width: min(1200px, 95vw);
+      margin-inline: auto;
+      padding: 0 20px;
+    }
+
+    /* Topbar */
+    .topbar {
+      background: var(--coral);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 0;
+    }
+
+    .nav__links {
+      list-style: none;
+      display: flex;
+      gap: clamp(18px, 4vw, 42px);
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav__links a {
+      text-decoration: none;
+      color: #fff;
+      font-weight: 600;
+      letter-spacing: .06em;
+      font-size: 16px;
+    }
+
+    .nav__menu {
+      border: 0;
+      background: transparent;
+      line-height: 0;
+      padding: 0;
+      width: 28px;
+    }
+
+    .nav__menu img {
+      width: 28px;
+      height: auto;
+    }
+
+    /* Hero */
+    .hero {
+      padding: clamp(28px, 6vw, 60px) 0 clamp(42px, 8vw, 90px);
+    }
+
+    .hero__grid {
+      display: grid;
+      align-items: center;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(30px, 5vw, 50px);
+      min-height: 500px;
+    }
+
+    .hero__title {
+      font-size: clamp(45px, 6.5vw, 75px);
+      letter-spacing: .12em;
+      margin: 0 0 30px;
+      font-weight: 800;
+    }
+
+    .hero__text {
+      color: var(--muted);
+      line-height: 1.6;
+      max-width: 55ch;
+      margin: 0 0 32px;
+      font-size: 16px;
+    }
+
+    .btn {
+      display: inline-block;
+      background: var(--btn);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 16px 40px;
+      border-radius: var(--radius);
+      box-shadow: 0 1px 0 rgba(0, 0, 0, .06);
+      font-size: 16px;
+      transition: .3s;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, .15);
+    }
+
+    .hero__image img {
+      width: 100%;
+      height: clamp(400px, 55vw, 650px);
+      object-fit: cover;
+      border-radius: 4px;
+    }
+
+    /* Gallery */
+    .gallery {
+      padding: clamp(40px, 7vw, 90px) 0 clamp(60px, 8vw, 110px);
+    }
+
+    .gallery__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(30px, 5vw, 50px);
+      align-items: center;
+      min-height: 400px;
+    }
+
+    .gallery__stack {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: clamp(16px, 2vw, 22px);
+    }
+
+    .gallery__cell {
+      overflow: hidden;
+      border-radius: 6px;
+    }
+
+    .gallery__cell:nth-child(1) {
+      grid-row: 1;
+      grid-column: 1;
+      aspect-ratio: 1/1;
+    }
+
+    .gallery__cell:nth-child(2) {
+      grid-row: 1/3;
+      grid-column: 2;
+    }
+
+    .gallery__cell:nth-child(3) {
+      grid-row: 2;
+      grid-column: 1;
+      aspect-ratio: 1/1;
+    }
+
+    .gallery__cell img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    /* Card */
+    .card {
+      background: var(--coral);
+      padding: clamp(22px, 3.5vw, 36px) clamp(22px, 4vw, 40px);
+      border-radius: 6px;
+      box-shadow: 0 8px 22px rgba(0, 0, 0, .08);
+      height: fit-content;
+      align-self: center;
+    }
+
+    .card__eyebrow {
+      margin: 0 0 14px;
+      font-size: 12px;
+      letter-spacing: .08em;
+      opacity: .85;
+      color: #000;
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+
+    .card__title {
+      font-size: clamp(38px, 6.2vw, 60px);
+      line-height: 1.1;
+      letter-spacing: .04em;
+      margin: 0 0 30px;
+      font-weight: 800;
+      color: #000;
+      text-transform: uppercase;
+    }
+
+    .card__cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: #000;
+      font-weight: 600;
+    }
+
+    .card__cta img {
+      width: 22px;
+      height: auto;
+      filter: brightness(0);
+    }
+
+    /* Responsive */
+    @media (max-width: 992px) {
+      .hero__grid, .gallery__grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .hero__image img {
+        height: clamp(260px, 50vw, 420px);
+      }
+
+      .nav__links {
+        gap: 22px;
+        flex-wrap: wrap;
+      }
+
+      .gallery__stack {
+        order: 2;
+      }
+
+      .card {
+        order: 1;
+        margin-top: 20px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav__links {
+        display: none;
+      } /* show only hamburger on mobile */
+
+      .hero__title {
+        font-size: clamp(32px, 8vw, 50px);
+      }
+
+      .card__title {
+        font-size: clamp(28px, 6vw, 40px);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        padding: 0 16px;
+      }
+
+      .card {
+        padding: 20px;
+      }
+    }
+
+    h1, h2, p, a, button {
+      word-break: break-word;
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <nav class="container nav">
+      <ul class="nav__links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Order</a></li>
+        <li><a href="#">Food</a></li>
+        <li><a href="#">Restaurant</a></li>
+        <li><a href="#">Testimonials</a></li>
+        <li><a href="#">Contact Us</a></li>
+      </ul>
+      <button class="nav__menu" aria-label="Menu">
+        <img src="menu-bar.png" alt="Menu">
+      </button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container hero__grid">
+        <div class="hero__content">
+          <h1 class="hero__title">LOREM IPSUM</h1>
+          <p class="hero__text">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
+            id est vitae dolor rhoncus tristique. Maecenas metus quam,
+            rhoncus euismod lorem in, sollicitudin viverra eros. Donec
+            dictum luctus quam ut tristique. Curabitur nec faucibus purus.
+            Quisque congue sem nec justo mollis, in tincidunt erat pretium.
+            Sed pulvinar, massa ac porta viverra.
+          </p>
+          <a class="btn" href="#">Click Me</a>
+        </div>
+        <div class="hero__image">
+          <img src="pexels-robin-stickel-70497.jpg" alt="Burger and fries on a plate">
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery + Callout -->
+    <section class="gallery">
+      <div class="container gallery__grid">
+        <div class="gallery__stack">
+          <div class="gallery__cell">
+            <img src="pexels-rachel-claire-6752433.jpg" alt="Neon sign street view">
+          </div>
+          <div class="gallery__cell">
+            <img src="pexels-mister-mister-3434523.jpg" alt="Assorted dishes flatlay">
+          </div>
+          <div class="gallery__cell">
+            <!-- FIXED FILENAME BELOW -->
+            <img src="./pexels-eva-bronzini-6141651.jpg" alt="Cafe alley scene">
+          </div>
+        </div>
+
+        <article class="card">
+          <p class="card__eyebrow">LOREM IPSUM</p>
+          <h2 class="card__title">LOREM IPSUM<br>SET ADEMIR</h2>
+          <a class="card__cta" href="#">
+            Click
+            <img src="icons8-arrow-30.png" alt="">
+          </a>
+        </article>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
